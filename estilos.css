@@ -1,0 +1,73 @@
+#name {
+    font-family: Coo;
+}
+
+#logo {
+    height: 50px;
+}
+
+#logo img {
+    height: 100%;
+    width: auto;
+}
+
+.category {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.pts {
+    margin-left: 5px;
+}
+
+.sectionTitle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    border-bottom: 1px solid gray;
+    padding: 3px 10px;
+}
+
+.section {
+    border: 2px solid black;
+    width: 80%;
+}
+
+.sectionContainer {}
+
+.unitContainer {
+    margin: 5px;
+    display: flex;
+}
+
+.unitData {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.unitTextBox {
+    width: 100%;
+}
+
+.unitIcon>img {
+    width: 60px;
+    height: auto;
+}
+
+.unitIcon {
+    margin-right: 10px;
+}
+
+.unitButtons {
+    margin-left: 10px;
+    display: flex;
+}
+
+.unitButtons>div {
+    margin: 5px;
+    border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    cursor: pointer;
+}

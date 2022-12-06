@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creador de listas</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <div id="logo">
+        <img src="Logo.jpg">
+    </div>
+    <div id="name">The 9th Age builder</div>
+    <div class="section">▼ My Lists</div>
+    <form>
+        <select>
+            <option value="none" selected disabled>Select an army</option>
+            <option value="BH">Beast Herd</option>
+            <option value="DE">Dread Elves</option>
+            <option value="DH">Dwarven Holds</option>
+            <option value="DL">Daemon Legions</option>
+        </select>
+    </form>
+    <div class="section">
+        <div class="sectionName">▼ "Nombre de la lista"</div>(v1) &#9999
+        <div class="pts">1135/4500 pts</div>
+    </div>
+    <div class="section">
+        <div class="sectionName">▼ Army</div> &#9999
+        <div class="pts">1135</div>
+    </div>
+    <form>
+        <select name="units" id="units">
+            <option value="none" selected disabled>Select an unit</option>
+            <!--<option value="Guerrero del caos" name="Guerrero del caos">Guerrero</option>
+            <option value="Bárbaros" name="Bárbaros">Bárbaros</option>-->
+        </select>
+    </form>
+    <div class="section">
+        <div class="sectionTitle">
+            <div class="sectionName">▼ Characters</div>
+            <div class="sectionPoints"> 210</div>
+        </div>
+        <div class="sectionContainer Characters">
+        </div>
+    </div>
+    <div class="section">
+        <div class="sectionTitle">
+            <div class="sectionName">▼ Core</div>
+            <div class="sectionPoints"> 210</div>
+        </div>
+        <div class="sectionContainer Core"></div>
+    </div>
+    <div class="section">
+        <div class="sectionTitle">
+            <div class="sectionName">▼ Special</div>
+            <div class="sectionPoints"> 210</div>
+        </div>
+        <div class="sectionContainer Special"></div>
+    </div>
+</body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="funciones.js"></script>
+
+</html>

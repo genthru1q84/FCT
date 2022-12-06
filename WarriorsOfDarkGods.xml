@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<list>
+    <army name="Warriors Of Dark Gods"></army>
+    <category name="Characters" max="45"></category>
+    <category name="Core" max="100" min="20"></category>
+    <category name="Special" max="100"></category>
+    <category name="Legendary_Beasts" max="35"></category>
+
+<Characters>
+    <unit nombre="Exalted Herald" size="1" category1="Characters" category2="none" baseCost="820">
+        <Addon name="General" type="bool" cost="0"></Addon>
+    </unit>
+    <unit nombre="Chosen Lord" size="1" maxMagic="150" category1="Characters" category2="none" baseCost="295">
+        <Addon name="General" type="bool" cost="0">
+            <interaction type="changeMaxMagic" points="200"></interaction>
+        </Addon>
+        <Addon name="Trophy Rack" type="bool" cost="25"></Addon>
+        <Addon name="Spiked shield" type="bool" cost="15"></Addon>
+        <Addon name="Weapon" type="dropdown">
+            <Option name="Great Weapon" cost="20"></Option>
+            <Option name="Halberd" cost="20"></Option>
+            <Option name="Lance" cost="10"></Option>
+            <Option name="Paired Weapons" cost="10"></Option>
+        </Addon>
+        <Addon name="Favour" type="dropdown">
+            <Option name="Sloth" cost="45"></Option>
+            <Option name="Greed" cost="15"></Option>
+            <Option name="Gluttony" cost="15"></Option>
+            <Option name="Envy" cost="45"></Option>
+            <Option name="Pride" cost="30"></Option>
+            <Option name="Wrath" cost="20"></Option>
+            <Option name="Lust" cost="0"></Option>
+        </Addon>
+        <Addon name="Gift" type="dropdown">
+            <Option name="Daemonic Wings" cost="80"></Option>
+            <Option name="Luck of the Dark Gods" cost="60"></Option>
+            <Option name="Dark Prelate" cost="55"></Option>
+            <Option name="Entropic Aura" cost="50"></Option>
+            <Option name="Idol of Spite" cost="70"></Option>
+        </Addon>
+        <Addon name="Mount" type="dropdown">
+            <Option name="War Dais" cost="90"></Option>
+            <Option name="Black Steed" cost="100"></Option>
+            <Option name="Karkadan" cost="85"></Option>
+            <Option name="Scythed Skywheel" cost="90"></Option>
+            <Option name="Dark Chariot" cost="130"></Option>
+            <Option name="Chimera" cost="155"></Option>
+            <Option name="Wasteland Dragon" cost="390"><interaction type="need" name="General"></interaction></Option>
+        </Addon>
+        <Addon name="Wings" type="bool" cost="40">
+            <interaction type="need" name="Chimera"></interaction>
+        </Addon>
+        <Addon name="Weapon Enchantment" type="magicItem" list="WeaponEnchantment"></Addon>
+        <Addon name="Armour Enchantment" type="magicItem" list="ArmourEnchantment"></Addon>
+        <Addon name="Shield Enchantment" type="magicItem" list="ShieldEnchantments">
+        </Addon>
+        <Addon name="1st Artefact" type="magicItem" list="Artefact"></Addon>
+        <Addon name="2nd Artefact" type="magicItem" list="Artefact"></Addon>
+        <Addon name="Banner Enchantment" type="magicItem" list="BannerEnchantments"><interaction type="need" name="Trophy Rack"></interaction></Addon>
+        <Addon name="2nd Banner Enchantment" type="magicItem" list="BannerEnchantments"><interaction type="need" name="Trophy Rack"></interaction></Addon>
+    </unit>
+    <unit nombre="Doomlord" size="1" maxMagic="150" category1="Characters" category2="none" baseCost="360">
+        <Addon name="General" type="bool" cost="0">
+            <interaction type="changeMaxMagic" points="200"></interaction>
+        </Addon>
+        <Addon name="Trophy Rack" type="bool" cost="25"></Addon>
+        <Addon name="Spiked shield" type="bool" cost="50"></Addon>
+        <Addon name="Weapon" type="dropdown">
+            <Option name="Great Weapon" cost="40"></Option>
+            <Option name="Paired Weapons" cost="5"></Option>
+            <Option name="Halberd" cost="25"></Option>
+        </Addon>
+        <Addon name="Mount" type="dropdown">
+            <Option name="Wasteland Behemoth" cost="225"></Option>
+        </Addon>
+        <Addon name="Weapon Enchantment" type="magicItem" list="WeaponEnchantment"></Addon>
+        <Addon name="Armour Enchantment" type="magicItem" list="ArmourEnchantment"></Addon>
+        <Addon name="Shield Enchantment" type="magicItem" list="ShieldEnchantments">
+        </Addon>
+        <Addon name="1st Artefact" type="magicItem" list="Artefact"></Addon>
+        <Addon name="2nd Artefact" type="magicItem" list="Artefact"></Addon>
+        <Addon name="Banner Enchantment" type="magicItem" list="BannerEnchantments"><interaction type="need" name="Trophy Rack"></interaction></Addon>
+        <Addon name="2nd Banner Enchantment" type="magicItem" list="BannerEnchantments"><interaction type="need" name="Trophy Rack"></interaction></Addon>
+    </unit>
+    <unit nombre="Sorcerer" size="1" maxMagic="150" category1="Characters" category2="none" baseCost="145">
+        <Addon name="General" type="bool" cost="0">
+            <interaction type="changeMaxMagic" points="200"></interaction>
+        </Addon>
+        <Addon name="Veil Walker" type="bool" cost="100"></Addon>
+        <Addon name="Paired Weapons" type="bool" cost="5"></Addon>
+        <Addon name="Plate Armour" type="bool" cost="15"></Addon>
+        <Addon name="Wizard Novice" type="dropdown">
+            <Option name="Wizard Adept" cost="75"></Option>
+            <Option name="Wizard Master" cost="225"></Option>
+        </Addon>
+        <Addon name="Path" type="dropdown">
+            <Option name="Alchemy" cost="0"></Option>
+            <Option name="Evocation" cost="0"></Option>
+            <Option name="Ocultism" cost="0"></Option>
+        </Addon>
+        <Addon name="Mount" type="dropdown">
+            <Option name="Black Steed" cost="50"></Option>
+            <Option name="Dark Chariot" cost="70"></Option>
+            <Option name="Battleshrine" cost="280"></Option>
+            <Option name="Scythed Skywheel" cost="65"></Option>
+            <Option name="War Dais" cost="50"></Option>
+            <Option name="Wasteland Behemoth" cost="340"></Option>
+            <Option name="Wasteland Dragon" cost="400"><interaction type="need" name="General"></interaction></Option>
+        </Addon>
+        <Addon name="Weapon Enchantment" type="magicItem" list="WeaponEnchantment"></Addon>
+        <Addon name="Armour Enchantment" type="magicItem" list="ArmourEnchantment"></Addon>
+        <Addon name="1st Artefact" type="magicItem" list="Artefact"></Addon>
+        <Addon name="2nd Artefact" type="magicItem" list="Artefact"></Addon>
+    </unit>
+    <unit nombre="Barbarian Chief" size="1" maxMagic="100" category1="Characters" category2="none" baseCost="110">
+        <Addon name="General" type="bool" cost="0">
+            <interaction type="changeMaxMagic" points="150"></interaction>
+        </Addon>
+        <Addon name="Trophy Rack" type="bool" cost="25"></Addon>
+        <Addon name="Shield" type="bool" cost="5"></Addon>
+        <Addon name="Throwing Weapons" type="bool" cost="5"></Addon>
+        <Addon name="Weapon" type="dropdown">
+            <Option name="Great Weapon" cost="10"></Option>
+            <Option name="Paired Weapons" cost="5"></Option>
+            <Option name="Spear" cost="5"></Option>
+            <Option name="Light Lance" cost="5"></Option>
+        </Addon>
+        <Addon name="Mount" type="dropdown">
+            <Option name="Shadow Chaser" cost="70"></Option>
+            <Option name="War Dais" cost="55"></Option>
+            <Option name="Dark Chariot" cost="120"></Option>
+            <Option name="Black Steed" cost="85"></Option>
+            <Option name="Chimera" cost="160"></Option>
+            <Option name="Wasteland Behemoth" cost="365"></Option>
+        </Addon>
+        <Addon name="Wings" type="bool" cost="40">
+            <interaction type="need" name="Chimera"></interaction>
+        </Addon>
+        <Addon name="Weapon Enchantment" type="magicItem" list="WeaponEnchantment"></Addon>
+        <Addon name="Armour Enchantment" type="magicItem" list="ArmourEnchantment"></Addon>
+        <Addon name="Shield Enchantment" type="magicItem" list="ShieldEnchantments">
+            <interaction type="need" name="Shield"></interaction>
+        </Addon>
+        <Addon name="1st Artefact" type="magicItem" list="Artefact"></Addon>
+        <Addon name="2nd Artefact" type="magicItem" list="Artefact"></Addon>
+    </unit>
+    <unit nombre="Feldrak Ancestor" size="1" maxMagic="400" category1="Characters" category2="Legendary_Beasts" baseCost="685">
+        <Addon name="General" type="bool" cost="0">
+        </Addon>
+        <Addon name="Weapon" type="dropdown">
+            <Option name="Paired Weapons" cost="80"></Option>
+            <Option name="Great Weapon" cost="10"></Option>
+            <Option name="Halberd" cost="40"></Option>
+        </Addon>
+        <Addon name="Weapon Enchantment" type="magicItem" list="WeaponEnchantmentx2"></Addon>
+        <Addon name="Banner Enchantment" type="magicItem" list="BannerEnchantments"><interaction type="need" name="Trophy Rack"></interaction></Addon>
+        <Addon name="2nd Banner Enchantment" type="magicItem" list="BannerEnchantments"><interaction type="need" name="Trophy Rack"></interaction></Addon>
+    </unit>
+    
+</Characters>
+<Core>
+    <unit maxMagic="100" nombre="Warriors" maxSize="25" size="10" baseCost="225" category1="Core" category2="none">
+        <Addon type="size" cost="22"></Addon>
+        <Addon type="bool" name="C" cost="30"></Addon>
+        <Addon type="bool" name="M" cost="20"></Addon>
+        <Addon type="bool" name="S" cost="20"></Addon>
+        <Addon type="dropdown" name="Equipment">
+            <Option name="Paired Weapons" cost="0"></Option>
+            <Option name="Great Weapons" cost="5"></Option>
+            <Option name="Halberd" cost="6"></Option>
+        </Addon>
+        <Addon type="dropdown" name="Favour">
+            <interaction type="need" name="C"></interaction>
+            <Option name="Pride" cost="3"></Option>
+            <Option name="Lust" cost="3"></Option>
+            <Option name="Gluttony" cost="2"></Option>
+            <Option name="Envy" cost="4"></Option>
+            <Option name="Wrath" cost="8"></Option>
+            <Option name="Greed" cost="7"></Option>
+            <Option name="Sloth" cost="9"></Option>
+        </Addon>
+        <Addon name="Banner Enchantment" type="magicItem" list="BannerEnchantments">
+            <interaction type="need" name="S"></interaction>
+        </Addon>
+    </unit>
+    <unit maxMagic="50" nombre="Fallen" maxSize="15" size="5" baseCost="150" category1="Core" category2="none">
+        <Addon type="size" cost="16"></Addon>
+    </unit>
+    <unit maxMagic="100" nombre="Barbarians" maxSize="40" size="15" baseCost="135" category1="Core" category2="none">
+        <Addon type="size" cost="7"></Addon>
+        <Addon type="bool" name="C" cost="20"></Addon>
+        <Addon type="bool" name="M" cost="20"></Addon>
+        <Addon type="bool" name="S" cost="20"></Addon>
+        <Addon type="dropdown" name="Equipment">
+            <Option name="Paired Weapons" cost="1"></Option>
+            <Option name="Spear and Shield" cost="3"></Option>
+            <Option name="Great weapons" cost="3"></Option>
+        </Addon>
+        <Addon type="perUnit" name="Shield" cost="1"></Addon>
+        <Addon type="perUnit" name="Throwing Weapons" cost="2"></Addon>
+        <Addon name="Banner Enchantment" type="magicItem" list="BannerEnchantments">
+            <interaction type="need" name="S"></interaction>
+        </Addon>
+    </unit>
+</Core>
+<Special>
+    <unit maxMagic="50" nombre="Warrior Knights" maxSize="10" size="5" baseCost="250" category1="Special" category2="none">
+        <Addon type="size" cost="38"></Addon>
+        <Addon type="dropdown" name="Equipment">
+            <Option name="Great weapons" cost="1"></Option>
+            <Option name="Lances" cost="7"></Option>
+        </Addon>
+        <Addon type="bool" name="C" cost="35"></Addon>
+        <Addon type="bool" name="M" cost="20"></Addon>
+        <Addon type="bool" name="S" cost="20"></Addon>
+        <Addon type="dropdown" name="Favour">
+            <interaction type="need" name="C"></interaction>
+            <Option name="Sloth" cost="7"></Option>
+            <Option name="Lust" cost="10"></Option>
+            <Option name="Envy" cost="4"></Option>
+            <Option name="Gluttony" cost="4"></Option>
+            <Option name="Wrath" cost="8"></Option>
+            <Option name="Greed" cost="5"></Option>
+            <Option name="Pride" cost="2"></Option>
+        </Addon>
+        <Addon name="Banner Enchantment" type="magicItem" list="BannerEnchantments"></Addon>
+    </unit>
+    <unit nombre="Warrior Chariot" maxSize="1" size="1" baseCost="230" category1="Special" category2="none">
+    </unit>
+    <unit nombre="Chosen" maxSize="12" size="5" baseCost="260" maxMagic="100" category1="Special" category2="none">
+        <Addon type="size" cost="55"></Addon>
+        <Addon type="dropdown" name="Equipment">
+            <Option name="Paired Weapons" cost="1"></Option>
+            <Option name="Great weapons" cost="4"></Option>
+            <Option name="Halberds" cost="8"></Option>
+        </Addon>
+        <Addon type="dropdown" name="Favour">
+            <Option name="Wrath" cost="16"></Option>
+            <Option name="Sloth" cost="11"></Option>
+            <Option name="Envy" cost="8"></Option>
+            <Option name="Greed" cost="10"></Option>
+            <Option name="Gluttony" cost="3"></Option>
+            <Option name="Lust" cost="0"></Option>
+            <Option name="Pride" cost="0"></Option>
+        </Addon>
+        <Addon type="bool" name="C" cost="30"></Addon>
+        <Addon type="bool" name="M" cost="20"></Addon>
+        <Addon type="bool" name="S" cost="20"></Addon>
+        <Addon name="Banner Enchantment" type="magicItem" list="BannerEnchantments"></Addon>
+    </unit>
+    <unit nombre="Chosen Knights" maxSize="5" size="3" baseCost="410" maxMagic="100" category1="Special" category2="none">
+        <Addon type="size" cost="110"></Addon>
+        <Addon type="bool" name="C" cost="25"></Addon>
+        <Addon type="bool" name="M" cost="20"></Addon>
+        <Addon type="bool" name="S" cost="20"></Addon>
+        <Addon type="dropdown" name="Favour">
+            <Option name="Sloth" cost="12"></Option>
+            <Option name="Envy" cost="6"></Option>
+            <Option name="Greed" cost="3"></Option>
+            <Option name="Lust" cost="8"></Option>
+            <Option name="Gluttony" cost="0"></Option>
+            <Option name="Wrath" cost="0"></Option>
+            <Option name="Pride" cost="3"></Option>
+        </Addon>
+        <Addon name="Banner Enchantment" type="magicItem" list="BannerEnchantments"></Addon>
+    </unit>
+    <unit nombre="Chosen Chariot" maxSize="1" size="1" baseCost="340" category1="Special" category2="none">
+        <Addon type="dropdown" name="Favour">
+            <Option name="Sloth" cost="60"></Option>
+            <Option name="Gluttony" cost="10"></Option>
+            <Option name="Envy" cost="25"></Option>
+            <Option name="Lust" cost="25"></Option> 
+            <Option name="Pride" cost="15"></Option>
+            <Option name="Greed" cost="25"></Option>
+			<Option name="Wrath" cost="0"></Option>
+        </Addon>
+    </unit>
+    <unit nombre="Forsworn" maxMagic="75" maxSize="10" size="3" baseCost="200" category1="Special" category2="none">
+        <Addon type="size" cost="60"></Addon>
+        <Addon type="bool" name="C" cost="20"></Addon>
+        <Addon type="bool" name="M" cost="20"></Addon>
+        <Addon type="bool" name="S" cost="20"></Addon>
+        <Addon type="perUnit" name="Spiked shields" cost="15"></Addon>
+        <Addon type="perUnit" name="Damnation" cost="10"></Addon>
+        <Addon type="dropdown" name="Equipment">
+            <Option name="Paired Weapons" cost="1"></Option>
+            <Option name="Halberd" cost="3"></Option>
+            <Option name="Great Weapns" cost="3"></Option>
+        </Addon>
+        <Addon name="Banner Enchantment" type="magicItem" list="BannerEnchantments"></Addon>
+    </unit>
+    <unit nombre="Wretched Ones" maxMagic="75" maxSize="6" size="1" baseCost="75" category1="Special" category2="none">
+        <Addon type="size" cost="85"></Addon>
+    </unit>
+    <unit nombre="Battleshrine" maxSize="1" size="1" baseCost="310" category1="Special" category2="none">
+        <Addon name="Banner Enchantment" type="magicItem" list="BannerEnchantments"></Addon>
+        <Addon name="Artefat" type="magicItem" list="Artefact"></Addon>
+    </unit>
+    <unit nombre="Barbarian Horsemen" maxMagic="50" maxSize="15" size="5" baseCost="130" category1="Special" category2="none">
+        <Addon type="size" cost="18">
+            <interaction type="coreOnNumber" number="8"></interaction>
+        </Addon>
+        <Addon type="bool" name="C" cost="20"></Addon>
+        <Addon type="bool" name="M" cost="20"></Addon>
+        <Addon type="bool" name="S" cost="20"></Addon>
+        <Addon type="perUnit" name="Shields" cost="2"></Addon>
+        <Addon type="dropdown" name="Equipment">
+            <Option name="Paired Weapons" cost="0"></Option>
+            <Option name="Light Lance" cost="2"></Option>
+            <Option name="Great Weapns" cost="0"></Option>
+        </Addon>
+        <Addon name="Banner Enchantment" type="magicItem" list="BannerEnchantments"></Addon>
+    </unit>
+    <unit nombre="Flayers" maxSize="10" size="5" baseCost="145" category1="Special" category2="none">
+        <Addon type="size" cost="14"></Addon>
+        <Addon type="bool" name="C" cost="20"></Addon>
+        <Addon type="bool" name="M" cost="20"></Addon>
+        <Addon type="perUnit" name="Shields" cost="2"></Addon>
+        <Addon type="dropdown" name="Equipment">
+            <Option name="Bows" cost="1"></Option>
+            <Option name="Throwing weapons" cost="2"></Option>
+            <Option name="Light Lance" cost="2"></Option>
+            <Option name="Skinning Lash" cost="4"></Option>
+        </Addon>
+        <Addon name="Banner Enchantment" type="magicItem" list="BannerEnchantments"></Addon>
+    </unit>
+    <unit nombre="Warhounds" maxSize="15" size="5" baseCost="95" category1="Special" category2="none">
+        <Addon type="size" cost="8">
+            <interaction type="coreOnNumber" number="8"></interaction>
+        </Addon>
+    </unit>
+     <unit nombre="Chimera" maxSize="1" size="1" baseCost="200" category1="Special" category2="none">
+        <Addon type="bool" name="Wings" cost="30"></Addon>
+    </unit>
+    <unit nombre="Feldraks" maxSize="6" size="3" baseCost="330" category1="Special" category2="none">
+        <Addon type="size" cost="120"></Addon>
+        <Addon type="bool" name="C" cost="20"></Addon>
+        <Addon type="bool" name="M" cost="20"></Addon>
+        <Addon type="bool" name="S" cost="20"></Addon>
+        <Addon type="dropdown" name="Equipment">
+            <Option name="Paired Weapons" cost="12"></Option>
+            <Option name="Great Weapons" cost="10"></Option>
+            <Option name="Halberds" cost="10"></Option>
+        </Addon>
+		<Addon name="Banner Enchantment" type="magicItem" list="BannerEnchantments"><interaction type="need" name="S"></interaction></Addon>
+    </unit>
+</Special>
+<Legendary_Beasts>
+    <unit nombre="Forsaken One" maxSize="1" size="1" baseCost="390" category1="Special" category2="none">
+    </unit>
+    <unit nombre="Marauding giant" maxSize="1" size="1" baseCost="260" category1="Special" category2="none">
+        <Addon type="bool" name="Big Brother" cost="35"></Addon>
+		<Addon type="dropdown" name="Equipment">
+            <Option name="Giant Club" cost="30"></Option>
+            <Option name="Monstruos familiar" cost="45"></Option>
+            <Option name="Tribal Warspear" cost="40"></Option>
+        </Addon>
+    </unit>
+    <unit nombre="Feldrak elder" maxSize="1" size="1" baseCost="435" category1="Special" category2="none">
+        <Addon type="dropdown" name="Equipment">
+            <Option name="Paired Weapons" cost="55"></Option>
+            <Option name="Great Weapon" cost="30"></Option>
+            <Option name="Halberd" cost="45"></Option>
+        </Addon>
+    </unit>
+    <unit nombre="Hellmaw" maxSize="1" size="1" baseCost="280" category1="Special" category2="none">
+        <Addon type="dropdown" name="Ominous Gateways">
+            <Option name="One Ominous Gateway" cost="100"></Option>
+            <Option name=" Two Ominous Gateways" cost="200"></Option>
+        </Addon> 
+    </unit>
+</Legendary_Beasts>
+
+<MagicalItems>
+<WeaponEnchantmentx2>
+    <Option name="Titanic Might" cost="100"></Option>
+    <Option name="Blessed Inscriptions" cost="130"></Option>
+    <Option name="King Slayer" cost="100"></Option>  
+    <Option name="Hero's Heart" cost="120"></Option>
+    <Option name="Touch of Greatness" cost="100"></Option>
+	<Option name="Shield Breaker" cost="70"></Option>
+	<Option name="Simbol of Slaughter" cost="70"></Option>
+    <Option name="Supernatural Dexterity" cost="60"></Option>
+    <Option name="Cleansing Light" cost="40"></Option>
+</WeaponEnchantmentx2>
+<WeaponEnchantment>
+    <Option name="Burning Portent" cost="125"></Option>
+    <Option name="Titanic Might" cost="50"></Option>
+    <Option name="Blessed Inscriptions" cost="65"></Option>
+    <Option name="King Slayer" cost="50"></Option>  
+    <Option name="Hero's Heart" cost="60"></Option>
+    <Option name="Touch of Greatness" cost="50"></Option>
+	<Option name="Shield Breaker" cost="35"></Option>
+	<Option name="Simbol of Slaughter" cost="35"></Option>
+    <Option name="Supernatural Dexterity" cost="25"></Option>
+    <Option name="Cleansing Light" cost="20"></Option>
+</WeaponEnchantment>
+<ArmourEnchantment>
+    <Option name="Death Cheater" cost="100"></Option>
+    <Option name="Destiny's Call" cost="70"></Option>
+    <Option name="Thrice-Forged" cost="60"></Option>
+    <Option name="Essence of Mithril" cost="50"></Option>
+    <Option name="Ghostly Guard" cost="35"></Option>
+    <Option name="Gladiators Spirit" cost="35"></Option>
+    <Option name="Basalt Infusion" cost="35"></Option>
+    <Option name="Alchemist Alloy" cost="15"></Option>
+</ArmourEnchantment>
+<Artefact>
+    <Option name="Ledger of souls" cost="75"></Option>
+    <Option name="Book of Arcane Mastery" cost="75"><interaction type="dominant"></interaction></Option>
+    <Option name="Crown of Autocracy" cost="65"></Option>
+    <Option name="Binding Scroll" cost="55"><interaction type="replicable" number="2"></interaction></Option>
+    <Option name="Essence of a Free Mind" cost="40"><interaction type="dominant"></interaction></Option>
+	<Option name="Magical Heirloom" cost="50"><interaction type="dominant"></interaction></Option>
+    <Option name="Talisman of the Void" cost="50"></Option>
+	<Option name="Crown of the Wizard King" cost="50"> <interaction type="dominant"></interaction> </Option>
+    <Option name="Talisman of Shielding" cost="50"></Option>
+    <Option name="Immortal Gauntlets" cost="45"></Option>
+    <Option name="Lord of the Damned" cost="35"></Option>
+    <Option name="Lightning Vambraces" cost="35"></Option>
+    <Option name="Rod of Battle" cost="35"></Option> 
+	<Option name="Crystal Ball" cost="35"></Option> 
+    <Option name="Sceptre of Power" cost="40"></Option>
+    <Option name="Dragon Staff" cost="30"></Option> 
+    <Option name="Ranger's Boots" cost="30"></Option>
+    <Option name="Obsidian Rock" cost="25"></Option>
+	<Option name="Dragonfire Gem" cost="20"></Option>
+	<Option name="Wyrd Stone" cost="15"></Option>
+	<Option name="Veilgate Orb" cost="10"></Option>
+    <Option name="Potion of Strength" cost="10"></Option>
+    <Option name="Lucky Charm" cost="10"></Option>
+    <Option name="Potion of Swiftness" cost="20"></Option>
+</Artefact>
+<BannerEnchantments>
+    <Option name="Zealots Banner" cost="50"><interaction type="replicable" number="3"></interaction></Option>    
+	<Option name="Rending Banner" cost="50"><interaction type="replicable" number="3"></interaction></Option>
+    <Option name="Icon of the Infinite" cost="40"><interaction type="replicable" number="3"></interaction></Option>    
+    <Option name="Banner of Speed" cost="50"><interaction type="replicable" number="3"></interaction></Option>    
+    <Option name="Stalker-s Standard" cost="40"><interaction type="replicable" number="3"></interaction></Option>	
+	<Option name="Banner of the Relentless Company" cost="40"><interaction type="replicable" number="3"></interaction></Option>
+    <Option name="Flaming Standard" cost="35"><interaction type="replicable" number="3"></interaction></Option>
+    <Option name="Banner of Discipline" cost="30"><interaction type="replicable" number="3"></interaction></Option>
+    <Option name="Wasteland Torch" cost="30"><interaction type="replicable" number="3"></interaction></Option>
+    <Option name="Legion Standard" cost="20"><interaction type="replicable" number="3"></interaction></Option>
+	<Option name="Aether Icon" cost="10"><interaction type="replicable" number="3"></interaction></Option>
+</BannerEnchantments>
+<ShieldEnchantments>
+    <Option name="Dusk Forged" cost="55"></Option>
+    <Option name="Willow's Ward" cost="15"></Option>
+</ShieldEnchantments>
+</MagicalItems>
+
+</list>
