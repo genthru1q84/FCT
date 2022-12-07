@@ -1,4 +1,5 @@
 let database
+let unitId = 0;
 
 function agregarUnidad(laValue) {
     if (laValue.value == "none") {
@@ -11,15 +12,10 @@ function agregarUnidad(laValue) {
         unitCost = $(this).attr('baseCost');
         unitCategory = $(this).attr('category1');
     })
-    let bloqueDeUnidad = '<div class="unitContainer" id="unit0"><div class="unitIcon"><img src="Logo.jpg"></div><div class="unitTextBox"><div class="unitData"><div class="unitName">' + unitName + '</div><div class="unitPoints">' + unitCost + '</div></div><div class="unitDescription">Capua</div></div><div class="unitButtons"><div>C</div><div>D</div></div></div>'
-    $("." + unitCategory).append(bloqueDeUnidad)
-    return;
-    $(".sectionName").each(function() {
-        var text = $(this).closest('.panel').find('.item-name').text();
-        if (text === unitCategory) {
-            $(".sectionContainer").append(bloqueDeUnidad)
-        }
-    });
+    unitId++;
+    let bloqueDeUnidad = '<div class="unitContainer" id="unit' + unitId + '"><div class="unitIcon"><img src="Logo.jpg"></div><div class="unitTextBox"><div class="unitData"><div class="unitName">' + unitName + '</div><div class="unitPoints">' + unitCost + '</div></div><div class="unitDescription">Capua</div></div><div class="unitButtons"><div>C</div><div>D</div></div></div>'
+    $("." + unitCategory).append(bloqueDeUnidad);
+
 }
 //$('#units').on('change', agregarUnidad(this));
 
