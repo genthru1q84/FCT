@@ -1,26 +1,63 @@
 let database
-let unitId = 0;
+const unitList = [];
 
-function agregarUnidad(laValue) {
-    if (laValue.value == "none") {
+/*propiedades del objeto unidad
+nombre
+coste base
+coste unidad
+coste total
+numero
+categoría
+*/
+
+function copyUnit(unitId) {
+    unitList.push(unitList[unitId]);
+    printUnit(unitId);
+}
+
+function deleteUnit(unitId) {
+
+}
+
+function addUnit(laValue) {
+    console.log(laValue);
+    if (laValue == "none") {
         return;
     }
-    let unitName = laValue.value;
+    let unitName = laValue;
     var unitCost = "";
     var unitCategory = "";
+    var unitObject = {};
     $(database).find("[nombre='" + unitName + "']").each(function() {
         unitCost = $(this).attr('baseCost');
         unitCategory = $(this).attr('category1');
+        unitSize = $(this).attr('size');
+        unitObject.name = unitName;
+        unitObject.baseCost = unitCost;
+        unitObject.category = unitCategory;
+        unitObject.size = unitSize;
+        //({ "name": unitName, "baseCost": unitCost, "category": unitCategory, "size": unitSize });
+        if ($(this).attr('maxSize')) {
+            unitMaxSize = $(this).attr('maxSize');
+            unitObject.maxSize = unitMaxSize;
+        }
+        if ($(this).attr('maxMagic')) {
+            unitMaxMagic = $(this).attr('maxMagic');
+            unitObject.maxMagic = unitMaxMagic;
+        }
+        if ($(this).children('Addon').attr('cost')) {
+            modelCost = $(this).children('Addon').attr('cost');
+            unitObject.modelCost = modelCost;
+        }
     })
-    unitId++;
-    let bloqueDeUnidad = '<div class="unitContainer" id="unit' + unitId + '"><div class="unitIcon"><img src="Logo.jpg"></div><div class="unitTextBox"><div class="unitData"><div class="unitName">' + unitName + '</div><div class="unitPoints">' + unitCost + '</div></div><div class="unitDescription">Capua</div></div><div class="unitButtons"><div>C</div><div>D</div></div></div>'
-    $("." + unitCategory).append(bloqueDeUnidad);
 
+    unitList.push(unitObject)
+    printUnit(unitList.length - 1);
+    console.log(unitList.length)
 }
 //$('#units').on('change', agregarUnidad(this));
-
 $('#units').on('change', function() {
-    agregarUnidad(this);
+    addUnit(this.value);
 });
 
 
@@ -30,6 +67,20 @@ $(document).ready(function() {
         initialize();
     });
 });
+
+function addPoints(unitCost, unitCategory) {
+    sectionPoints = parseInt(unitCost);
+    let total = parseInt($('.points').eq(1).text());
+    if (!$.isNumeric(total)) {
+        total = 0;
+    }
+    total += parseInt(unitCost);
+    $('.points').text(total);
+    if ($.isNumeric((parseInt($('.sectionPoints' + '.' + unitCategory).text())))) {
+        sectionPoints += parseInt($('.sectionPoints' + '.' + unitCategory).text())
+    }
+    $('.sectionPoints' + '.' + unitCategory).text(sectionPoints);
+}
 
 function initialize() {
     $(database).find("unit").each(function() {
@@ -41,4 +92,12 @@ function initialize() {
             text: name
         }));
     });
+}
+
+function printUnit(unitId) {
+    let unit = unitList[unitId];
+    let bloqueDeUnidad = '<div class="unitContainer" id="unit' + (unitList.length - 1) + '"><div class="unitIcon"><img src="Logo.jpg"></div><div class="unitTextBox"><div class="unitData"><div class="unitName">' + unit.name + '</div><div class="unitPoints">' + unit.baseCost + '</div></div><div class="unitDescription">Patata</div></div><div class="unitButtons"><div class="copyButton" onclick="copyUnit(' + (unitList.length - 1) + ')">C</div><div class="deleteButton" onclick="deleteUnit(' + (unitList.length - 1) + ')">D</div></div></div>'
+    console.log(bloqueDeUnidad)
+    $(".sectionContainer." + unit.category).append(bloqueDeUnidad);
+    addPoints(unit.baseCost, unit.category);
 }
