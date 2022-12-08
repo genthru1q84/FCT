@@ -11,6 +11,14 @@
     width: auto;
 }
 
+label {
+    cursor: pointer;
+}
+
+img {
+    cursor: pointer;
+}
+
 .category {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -47,6 +55,8 @@
     border: 2px solid black;
     width: 100%;
     height: 100%;
+    padding: 15px;
+    box-sizing: border-box;
 }
 
 .unitContainer {
@@ -84,5 +94,70 @@
     display: flex;
     align-items: center;
     padding: 0px 10px;
+    cursor: pointer;
+}
+
+.sizeOption {
+    display: flex;
+}
+
+.sizeOption>div {
+    margin: 8px 1px;
+    padding: 2px;
+}
+
+label {
+    margin-left: 10px;
+}
+
+.cost {
+    background-color: rgba(153, 204, 238, 0.6);
+    color: blue;
+}
+
+.nameAndCost {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    background-color: rgba(128, 97, 40, 0.712);
+}
+
+.backButton {
+    margin-left: auto;
+}
+
+.editedUnitCost {
+    margin: 0px 5px;
+}
+
+.option {
+    display: flex;
+    margin: 12px 6px;
+}
+
+.unitSectionData {
+    display: flex;
+}
+
+.booleanOption {
+    border: 2px solid black;
+    margin: 12px 6px;
+    padding: 10px;
+}
+
+.optionTitle {
+    font-weight: bold;
+}
+
+#saveButton {
+    display: flex;
+    align-items: center;
+    width: 60px;
+    height: 10px;
+    background-color: white;
+    color: black;
+    margin: 10px auto;
+    padding: 15px;
+    border: 2px solid black;
     cursor: pointer;
 }

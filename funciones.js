@@ -98,7 +98,27 @@ function initialize() {
 
 function printUnit(unitId) {
     let unit = unitList[unitId];
-    let bloqueDeUnidad = '<div class="unitContainer" id="unit' + (unitList.length - 1) + '"><div class="unitIcon"><img src="Logo.jpg"></div><div class="unitTextBox"><div class="unitData"><div class="unitName">' + unit.name + '</div><div class="unitPoints">' + unit.baseCost + '</div></div><div class="unitDescription">Patata</div></div><div class="unitButtons"><div class="copyButton" onclick="copyUnit(' + (unitList.length - 1) + ')">C</div><div class="deleteButton" onclick="deleteUnit(' + (unitList.length - 1) + ')">D</div></div></div>'
+    let bloqueDeUnidad = '<div class="unitContainer" id="unit' + (unitList.length - 1) + '"><div class="unitIcon"><img src="Logo.jpg"></div><div class="unitTextBox" onclick="editUnit(' + (unitList.length - 1) + ')"><div class="unitData"><div class="unitName">' + unit.name + '</div><div class="unitPoints">' + unit.baseCost + '</div></div><div class="unitDescription">Patata</div></div><div class="unitButtons"><div class="copyButton" onclick="copyUnit(' + (unitList.length - 1) + ')">C</div><div class="deleteButton" onclick="deleteUnit(' + (unitList.length - 1) + ')">D</div></div></div>'
     $(".sectionContainer." + unit.category).append(bloqueDeUnidad);
     addPoints(unit.baseCost, unit.category);
+}
+
+function editUnit(unitId) {
+    let check = unitList[unitId];
+    let editChunk = "<div id='editPanel'><div id='panelContainer'><div class='nameAndCost'><div class='editedUnitName'></div><div class='editedUnitCost'></div><div class='backButton'></div></div>";
+
+    if (check.category == 'Characters') {
+        if ($(check).children('Addon').attr('General')) {
+
+
+        }
+        if ($(check).children('Addon').attr('General')) {
+
+
+        }
+    }
+    if (check.size != 1) {
+
+    }
+    $("body").append(editChunk)
 }
