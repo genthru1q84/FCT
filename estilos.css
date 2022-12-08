@@ -32,7 +32,22 @@
     width: 80%;
 }
 
-.sectionContainer {}
+#editPanel {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 50px;
+}
+
+#panelContainer {
+    background-color: white;
+    border: 2px solid black;
+    width: 100%;
+    height: 100%;
+}
 
 .unitContainer {
     margin: 5px;

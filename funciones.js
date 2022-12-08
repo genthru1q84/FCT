@@ -16,7 +16,9 @@ function copyUnit(unitId) {
 }
 
 function deleteUnit(unitId) {
-
+    $('#unit' + unitId).remove();
+    addPoints(-unitList[unitId].totalCost, unitList[unitId].category);
+    unitList[unitId] = null;
 }
 
 function addUnit(laValue) {
@@ -36,6 +38,7 @@ function addUnit(laValue) {
         unitObject.baseCost = unitCost;
         unitObject.category = unitCategory;
         unitObject.size = unitSize;
+        unitObject.totalCost = unitCost;
         //({ "name": unitName, "baseCost": unitCost, "category": unitCategory, "size": unitSize });
         if ($(this).attr('maxSize')) {
             unitMaxSize = $(this).attr('maxSize');
@@ -53,7 +56,6 @@ function addUnit(laValue) {
 
     unitList.push(unitObject)
     printUnit(unitList.length - 1);
-    console.log(unitList.length)
 }
 //$('#units').on('change', agregarUnidad(this));
 $('#units').on('change', function() {
@@ -97,7 +99,6 @@ function initialize() {
 function printUnit(unitId) {
     let unit = unitList[unitId];
     let bloqueDeUnidad = '<div class="unitContainer" id="unit' + (unitList.length - 1) + '"><div class="unitIcon"><img src="Logo.jpg"></div><div class="unitTextBox"><div class="unitData"><div class="unitName">' + unit.name + '</div><div class="unitPoints">' + unit.baseCost + '</div></div><div class="unitDescription">Patata</div></div><div class="unitButtons"><div class="copyButton" onclick="copyUnit(' + (unitList.length - 1) + ')">C</div><div class="deleteButton" onclick="deleteUnit(' + (unitList.length - 1) + ')">D</div></div></div>'
-    console.log(bloqueDeUnidad)
     $(".sectionContainer." + unit.category).append(bloqueDeUnidad);
     addPoints(unit.baseCost, unit.category);
 }
