@@ -1,5 +1,6 @@
 #name {
-    font-family: Coo;
+    margin-left: 10px;
+    font-size: 24px;
 }
 
 #logo {
@@ -37,11 +38,12 @@ img {
 
 .section {
     border: 2px solid black;
-    width: 80%;
+    margin: 10px;
+    padding: 20px;
 }
 
 #editPanel {
-    position: absolute;
+    position: fixed;
     background-color: rgba(0, 0, 0, 0.8);
     top: 0px;
     bottom: 0px;
@@ -51,6 +53,7 @@ img {
 }
 
 #panelContainer {
+    overflow: scroll;
     background-color: white;
     border: 2px solid black;
     width: 100%;
@@ -62,6 +65,8 @@ img {
 .unitContainer {
     margin: 5px;
     display: flex;
+    border-bottom: 1px solid black;
+    padding: 12px;
 }
 
 .unitData {
@@ -70,8 +75,20 @@ img {
     width: 100%;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Palanquin+Dark');
+.unitName {
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: rgba(1, 1, 14, 0.78);
+}
+
 .unitTextBox {
     width: 100%;
+    cursor: pointer;
+    padding: 0px 20px;
 }
 
 .unitIcon>img {
@@ -139,7 +156,8 @@ label {
     display: flex;
 }
 
-.booleanOption {
+.booleanOption,
+.magicOption {
     border: 2px solid black;
     margin: 12px 6px;
     padding: 10px;
@@ -147,6 +165,7 @@ label {
 
 .optionTitle {
     font-weight: bold;
+    display: flex;
 }
 
 #saveButton {
@@ -160,4 +179,96 @@ label {
     padding: 15px;
     border: 2px solid black;
     cursor: pointer;
+}
+
+.optionTitle>div {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.button {
+    cursor: pointer;
+    border: 2px solid black;
+    padding: 3px 10px;
+}
+
+#buttoneer {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+#formatPopUp {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#formatText {
+    margin: 15vh auto;
+    border: 2px solid black;
+    padding: 50px;
+    position: relative;
+    background-color: white;
+    min-height: 50vh;
+    min-width: 40vw;
+    max-width: fit-content;
+}
+
+#formatBack {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+body {
+    max-width: 1000px;
+    font-family: "Palanquin Dark", sans-serif;
+    margin: 30px auto;
+}
+
+.section:nth-child(5) {
+    display: flex;
+    align-items: center;
+}
+
+.section:nth-child(5)>div {
+    margin-right: 30px;
+}
+
+.section:nth-child(5)>div:last-child {
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+select#units {
+    margin: 0px 10px;
+    border: 2px solid black;
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.sectionName,
+.sectionPoints {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.unitPoints {
+    font-weight: bold;
+}
+
+.sectionPoints {
+    margin-right: 120px;
+}
+
+form {
+    display: flex;
+    font-size: 18px;
+    align-items: center;
 }

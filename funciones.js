@@ -1,5 +1,6 @@
-let database
-const unitList = [];
+let database;
+let unitList = [];
+let unitBeingEdited;
 
 /*propiedades del objeto unidad
 nombre
@@ -17,7 +18,7 @@ function copyUnit(unitId) {
 
 function deleteUnit(unitId) {
     $('#unit' + unitId).remove();
-    addPoints(-unitList[unitId].totalCost, unitList[unitId].category);
+    addPoints(-totalUnitCost(unitList[unitId]), unitList[unitId].category);
     unitList[unitId] = null;
 }
 
@@ -31,13 +32,17 @@ function addUnit(laValue) {
     var unitCategory = "";
     var unitObject = {};
     $(database).find("[nombre='" + unitName + "']").each(function() {
-        unitCost = $(this).attr('baseCost');
+        unitCost = parseInt($(this).attr('baseCost'));
         unitCategory = $(this).attr('category1');
         unitSize = $(this).attr('size');
+        unitObject.options = [];
+        unitObject.optionsPrice = [];
         unitObject.name = unitName;
         unitObject.baseCost = unitCost;
         unitObject.category = unitCategory;
         unitObject.size = unitSize;
+        unitObject.minSize = unitSize;
+        unitObject.maxSize = $(this).attr('maxSize');
         unitObject.totalCost = unitCost;
         //({ "name": unitName, "baseCost": unitCost, "category": unitCategory, "size": unitSize });
         if ($(this).attr('maxSize')) {
@@ -57,16 +62,30 @@ function addUnit(laValue) {
     unitList.push(unitObject)
     printUnit(unitList.length - 1);
 }
-//$('#units').on('change', agregarUnidad(this));
-$('#units').on('change', function() {
-    addUnit(this.value);
-});
 
 
 $(document).ready(function() {
     $.get("WarriorsOfDarkGods.xml", function(xml) {
         database = xml;
         initialize();
+    });
+    $('.backButton').on('click', function() {
+        $('#editPanel').hide();
+    });
+    $('#exportButton').on('click', function() {
+        exporter();
+    });
+    $('#formatButton').on('click', function() {
+        formatArmy();
+    });
+    $('#formatBack').on('click', function() {
+        closeFormat();
+    });
+    $('#importButton').on('click', function() {
+        importerButton();
+    });
+    $('#addUnitButton').on('click', function() {
+        addUnit($('#units').val());
     });
 });
 
@@ -76,12 +95,17 @@ function addPoints(unitCost, unitCategory) {
     if (!$.isNumeric(total)) {
         total = 0;
     }
-    total += parseInt(unitCost);
-    $('.points').text(total);
     if ($.isNumeric((parseInt($('.sectionPoints' + '.' + unitCategory).text())))) {
         sectionPoints += parseInt($('.sectionPoints' + '.' + unitCategory).text())
     }
     $('.sectionPoints' + '.' + unitCategory).text(sectionPoints);
+    total = 0;
+    $('.sectionPoints').each(function() {
+        if ($(this).text() != "") {
+            total += parseInt($(this).text());
+        }
+    });
+    $('.points').text(total + "/4500");
 }
 
 function initialize() {
@@ -98,27 +122,226 @@ function initialize() {
 
 function printUnit(unitId) {
     let unit = unitList[unitId];
-    let bloqueDeUnidad = '<div class="unitContainer" id="unit' + (unitList.length - 1) + '"><div class="unitIcon"><img src="Logo.jpg"></div><div class="unitTextBox" onclick="editUnit(' + (unitList.length - 1) + ')"><div class="unitData"><div class="unitName">' + unit.name + '</div><div class="unitPoints">' + unit.baseCost + '</div></div><div class="unitDescription">Patata</div></div><div class="unitButtons"><div class="copyButton" onclick="copyUnit(' + (unitList.length - 1) + ')">C</div><div class="deleteButton" onclick="deleteUnit(' + (unitList.length - 1) + ')">D</div></div></div>'
+    let bloqueDeUnidad = '<div class="unitContainer" id="unit' + (unitList.length - 1) + '"><div class="unitIcon"><img src="Logo.jpg"></div><div class="unitTextBox" onclick="editUnit(' + (unitList.length - 1) + ')"><div class="unitData"><div class="unitName">' + unit.name + '</div><div class="unitPoints">' + totalUnitCost(unit) + '</div></div><div class="unitDescription">' + unitDescription(unit) + '</div></div><div class="unitButtons"><div class="copyButton" onclick="copyUnit(' + (unitList.length - 1) + ')">C</div><div class="deleteButton" onclick="deleteUnit(' + (unitList.length - 1) + ')">D</div></div></div>'
     $(".sectionContainer." + unit.category).append(bloqueDeUnidad);
-    addPoints(unit.baseCost, unit.category);
+    addPoints(totalUnitCost(unit), unit.category);
 }
 
 function editUnit(unitId) {
     let check = unitList[unitId];
-    let editChunk = "<div id='editPanel'><div id='panelContainer'><div class='nameAndCost'><div class='editedUnitName'></div><div class='editedUnitCost'></div><div class='backButton'></div></div>";
+    unitBeingEdited = $.extend(true, {}, check);
+    $("#editSection").empty();
+    $(".editedUnitCost").text(totalUnitCost(check));
+    $(".editedUnitName").text(check.name);
 
-    if (check.category == 'Characters') {
-        if ($(check).children('Addon').attr('General')) {
+    $(database).find("[nombre='" + check.name + "'] > Addon[type='size']").each(function() {
+        $("#editSection").append("<div class='sizeOption'><div class='alteredSize'><input id='actualEditNumber' type='number' name='newSize' min='" + check.minSize + "' max='" + check.maxSize + "' value='" + check.size + "'></div><div class='cost'>" + $(this).attr('cost') + " pts</div><div class='sizeText'><label for='newSize'>Number</label></div></div>");
+    });
 
+    $('#actualEditNumber').on('change', function() {
+        unitBeingEdited.size = $(this).val();
+        unitBeingEdited.totalCost = unitBeingEdited.baseCost + ((unitBeingEdited.size - unitBeingEdited.minSize) * unitBeingEdited.modelCost);
+        $(".editedUnitCost").text(totalUnitCost(unitBeingEdited));
+    });
 
+    // Booleanos sin seccion
+    $(database).find("[nombre='" + check.name + "'] > Addon[type='bool']").each(function() {
+        var checked = "";
+        if (unitBeingEdited.options.indexOf("Sing - " + $(this).attr('name')) != -1) {
+            checked = "checked";
         }
-        if ($(check).children('Addon').attr('General')) {
+        if ($(this).attr('cost') != "0") {
+            costChunk = "<div class='cost'>" + $(this).attr('cost') + "</div>"
+        } else {
+            costChunk = "";
+        }
+        $("#editSection").append("<div class='option'><input " + checked + " type='checkbox' id='" + $(this).attr('name') + "' name='" + $(this).attr('name') + "'>" + costChunk + "<label for='" + $(this).attr('name') + "'>" + $(this).attr('name') + "</label></div>");
+    });
 
+    // Secciones de booleanos
+    sectionNumber = 0;
+    $(database).find("[nombre='" + check.name + "'] > Addon[type='dropdown']").each(function() {
+        $("#editSection").append(" <div class='booleanOption' id='section" + sectionNumber + "'><div class='optionTitle'>" + $(this).attr("name") + "<div onclick='toggleBoolean(this)'>+</div></div></div>");
+        $(this).children('Option').each(function() {
+            var checked = "";
+            if (unitBeingEdited.options.indexOf($(this).attr('name')) != -1) {
+                checked = "checked";
+            }
+            if ($(this).attr('cost') != "0") {
+                costChunk = "<div class='cost'>" + $(this).attr('cost') + "</div>"
+            } else {
+                costChunk = "";
+            }
+            $("#section" + sectionNumber).append("<div style='display:none;' class='option'><input " + checked + " type='checkbox' id='" + $(this).attr('name') + "' name='" + $(this).attr('name') + "'>" + costChunk + "<label for='" + $(this).attr('name') + "'>" + $(this).attr('name') + "</label></div>");
+        });
+        sectionNumber++;
+    });
 
+    // Secciones de objetos magicos
+    $(database).find("[nombre='" + check.name + "'] > Addon[type='magicItem']").each(function() {
+        $("#editSection").append(" <div class='magicOption' id='section" + sectionNumber + "'><div class='optionTitle'>" + $(this).attr("name") + "<div onclick='toggleBoolean(this)'>+</div></div></div>");
+        console.log($(this).attr("list"));
+        newQuery = $(this).attr("list");
+        $(database).find(newQuery).children('Option').each(function() {
+            var checked = "";
+            if (unitBeingEdited.options.indexOf("Sing - " + $(this).attr('name')) != -1) {
+                checked = "checked";
+            }
+            if ($(this).attr('cost') != "0") {
+                costChunk = "<div class='cost'>" + $(this).attr('cost') + "</div>"
+            } else {
+                costChunk = "";
+            }
+            $("#section" + sectionNumber).append("<div style='display:none;' class='option'><input " + checked + " type='checkbox' id='" + $(this).attr('name') + "' name='" + $(this).attr('name') + "'>" + costChunk + "<label for='" + $(this).attr('name') + "'>" + $(this).attr('name') + "</label></div>");
+        });
+        sectionNumber++;
+    });
+
+    // Evento para las checkboxes
+    $('.option :checkbox').on('change', function(e) {
+        var check = false;
+        var isSingular = "";
+        if ($(this).is(":checked")) {
+            check = true;
+        }
+        if ($(this).parent().parent().attr("class") == "booleanOption") {
+            booleanOptionID = $(this).parent().parent().attr("id");
+            $("#" + booleanOptionID + " .option :checkbox").each(function() {
+                if (unitBeingEdited.options.indexOf($(this).attr("name")) != -1) {
+                    $(this).prop("checked", false);
+                    unitBeingEdited.optionsPrice.splice(unitBeingEdited.options.indexOf($(this).attr("name")), 1);
+                    unitBeingEdited.options.splice(unitBeingEdited.options.indexOf($(this).attr("name")), 1);
+                }
+            });
+        } else {
+            isSingular = "Sing - ";
+            $("#" + $(this).parent().parent().attr("id") + ".magicOption .option :checkbox").each(function() {
+                if (unitBeingEdited.options.indexOf(isSingular + $(this).attr("name")) != -1) {
+                    $(this).prop("checked", false);
+                    unitBeingEdited.optionsPrice.splice(unitBeingEdited.options.indexOf($(this).attr("name")), 1);
+                    unitBeingEdited.options.splice(unitBeingEdited.options.indexOf($(this).attr("name")), 1);
+                }
+            });
+            if (unitBeingEdited.options.indexOf(isSingular + $(this).attr("name")) != -1) {
+                $(this).prop("checked", false);
+                unitBeingEdited.optionsPrice.splice(unitBeingEdited.options.indexOf(isSingular + $(this).attr("name")), 1);
+                unitBeingEdited.options.splice(unitBeingEdited.options.indexOf(isSingular + $(this).attr("name")), 1);
+            }
+        }
+        if (check) {
+            $(this).prop("checked", true);
+            unitBeingEdited.options.push(isSingular + $(this).attr("name"));
+            if ($(this).next().attr("class") == "cost") {
+                unitBeingEdited.optionsPrice.push(parseInt($(this).next().text()));
+            } else {
+                unitBeingEdited.optionsPrice.push(0);
+            }
+        }
+        $(".editedUnitCost").text(totalUnitCost(unitBeingEdited));
+    });
+
+    $("#editSection").append('<div id="saveButton" onclick="saveEditedUnit(' + (unitList.length - 1) + ')">Save unit</div>');
+    $('#editPanel').show();
+}
+
+function toggleBoolean(elem) {
+    $(elem).parent().parent().children().each(function() {
+        if ($(this).attr("class") != "optionTitle") {
+            $(this).toggle();
+        }
+    });
+    if ($(elem).text() != "-") {
+        $(elem).text("-");
+    } else {
+        $(elem).text("+");
+    }
+}
+
+function totalUnitCost(unit) {
+    cost = unit.totalCost;
+    for (var i = 0; i < unit.options.length; i++) {
+        if (unit.options[i].includes("Sing - ")) {
+            cost += unit.optionsPrice[i];
+        } else {
+            cost += unit.optionsPrice[i] * unit.size;
         }
     }
-    if (check.size != 1) {
+    return cost;
+}
 
+function unitDescription(unit) {
+    descr = "";
+    for (var i = 0; i < unit.options.length; i++) {
+        descr += unit.options[i].replace("Sing - ", "") + ", ";
     }
-    $("body").append(editChunk)
+    return descr.substring(0, descr.length - 2);;
+}
+
+function saveEditedUnit(unitId) {
+    addPoints(-totalUnitCost(unitList[unitId]), unitList[unitId].category);
+    unitList[unitId] = $.extend(true, {}, unitBeingEdited);
+    addPoints(totalUnitCost(unitList[unitId]), unitList[unitId].category);
+    $("#unit" + unitId + " .unitTextBox").empty();
+    $("#unit" + unitId + " .unitTextBox").append('<div class="unitData"><div class="unitName">' + unitBeingEdited.name + '</div><div class="unitPoints">' + totalUnitCost(unitBeingEdited) + '</div></div><div class="unitDescription">' + unitDescription(unitBeingEdited) + '</div>');
+    $('#editPanel').hide();
+}
+
+// Exporter
+function exporter() {
+    let outp = JSON.stringify(unitList);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:attachment/text,' + encodeURI(outp);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'list.ac';
+    hiddenElement.click();
+}
+
+// Importer
+function importerButton() {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.ac';
+    input.onchange = _this => {
+        let files = Array.from(input.files);
+        importer(files[0]);
+    };
+    input.click();
+}
+
+function importer(file) {
+    const reader = new FileReader();
+    $(".sectionContainer").empty();
+    reader.addEventListener("load", () => {
+        unitList = ""
+        unitList = JSON.parse(reader.result);
+        for (i = 0; i < unitList.length; i++) {
+            printUnit(i);
+        }
+    }, false);
+
+    if (file) {
+        reader.readAsText(file);
+    }
+}
+
+function formatArmy() {
+    formatOutput = "";
+    for (var i = 0; i < unitList.length; i++) {
+        ""
+        formatOutput += totalUnitCost(unitList[i]) + " - " + unitList[i].name;
+        for (var j = 0; j < unitList[i].options.length; j++) {
+            optionName = unitList[i].options[j];
+            if (unitList[i].options[j].includes("Sing - ")) {
+                optionName = unitList[i].options[j].replace("Sing - ", "");
+            }
+            formatOutput += ", " + optionName;
+        }
+        formatOutput += "<br>";
+    }
+    $("#formatText").html(formatOutput + "<div id='formatBack' onclick='closeFormat()' ><img src='back.jpg'></div>");
+    $("#formatPopUp").show();
+}
+
+function closeFormat() {
+    $("#formatPopUp").hide();
 }

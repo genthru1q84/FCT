@@ -16,30 +16,21 @@
         <img src='Logo.jpg'>
     </div>
     <div id='name'>The 9th Age builder</div>
-    <div class='section'>▼ My Lists</div>
-    <form>
+    <div style="display:none" class='section'>▼ My Lists</div>
+    <form style="display:none">
         <select>
-            <option value='none' selected disabled>Select an army</option>
-            <option value='BH'>Beast Herd</option>
-            <option value='DE'>Dread Elves</option>
-            <option value='DH'>Dwarven Holds</option>
-            <option value='DL'>Daemon Legions</option>
+            <option value='none' selected disabled>Warriors of Dark Gods</option>
         </select>
     </form>
     <div class='section'>
         <div class='sectionName'>▼ 'Nombre de la lista'</div>(v1) &#9999
         <div class='points'>/4500 pts</div>
     </div>
-    <div class='section'>
-        <div class='sectionName'>▼ Army</div> &#9999
-        <div class='points'></div>
-    </div>
     <form>
         <select name='units' id='units'>
-            <option value='none' selected disabled>Select an unit</option>
-            <!--<option value='Guerrero del caos' name='Guerrero del caos'>Guerrero</option>
-            <option value='Bárbaros' name='Bárbaros'>Bárbaros</option>-->
+            <option value='none' selected disabled>Select a unit</option>
         </select>
+        <div class="button" id="addUnitButton">Agregar >></div>
     </form>
     <div class='section'>
         <div class='sectionTitle'>
@@ -63,7 +54,7 @@
         </div>
         <div class='sectionContainer Special'></div>
     </div>
-    <div id='editPanel'>
+    <div id='editPanel' style='display:none;'>
         <div id='panelContainer'>
             <div class='nameAndCost'>
                 <div class='editedUnitName'>Warriors</div>
@@ -71,62 +62,17 @@
                 <div class='backButton'><img src='back.jpg'></div>
             </div>
             <div id='editedUnit'>
-                <div class='editSection'>
-                    <div class='sizeOption'>
-                        <div class='alteredSize'>
-                            <input type='number' name='newSize' min='10' max='30' value='10'>
-                        </div>
-                        <div class='cost'>20 pts</div>
-                        <div class='sizeText'>
-                            <label for='newSize'>Number</label>
-                        </div>
-                    </div>
-                    <div class='booleanOption'>
-                        <div class='optionTitle'>Weapon</div>
-                        <div class='option'>
-                            <input type='checkbox' id='option1' name='option1'>
-                            <label for='option1'>Paired Weapon</label>
-                        </div>
-                        <div class='option'>
-                            <input type='checkbox' id='option2' name='option2'>
-                            <div class='cost'>3 pts</div>
-                            <label for='option2'>Great Weapon</label>
-                        </div>
-                        <div class='option'>
-                            <input type='checkbox' id='option3' name='option3'>
-                            <div class='cost'>4 pts</div>
-                            <label for='option3'>Halberd</label>
-                        </div>
-                    </div>
-                    <div class='booleanOption'>
-                        <div class='optionTitle'>Command Group</div>
-                        <div class='option'>
-                            <input type='checkbox' id='option4' name='option4'>
-                            <div class='cost'>10 pts</div>
-                            <label for='option4'>Standard</label>
-                        </div>
-                        <div class='option'>
-                            <input type='checkbox' id='option5' name='option5'>
-                            <div class='cost'>10 pts</div>
-                            <label for='option5'>Musician</label>
-                        </div>
-                        <div class='option'>
-                            <input type='checkbox' id='option6' name='option6'>
-                            <div class='cost'>30 pts</div>
-                            <label for='option6'>Champion</label>
-                        </div>
-                    </div>
-                    <div class='details'></div>
-                    <div class='unitSectionData'>
-                        <div class='unitSectionName'>Core:</div>
-                        <div class='cost'>230 / 900 pts</div>
-                        <div class='alert'><i class='fa fa-exclamation-circle' style='font-size:16px;color:red;margin-left:8px'></i></div>
-                    </div>
-                    <div id='saveButton' onclick="saveUnit(' + (unitList.length - 1) + ')">Save unit</div>
+                <div id='editSection'>
                 </div>
             </div>
         </div>
     </div>
+    <div id="buttoneer">
+        <div class="button" id="exportButton">Export Army to file</div>
+        <div class="button" id="importButton">Import file to Army</div>
+        <div class="button" id="formatButton">Format Army</div>
+    </div>
+    <div id="formatPopUp" style="display:none"><div id="formatText"></div></div>
 </body>
 
 
