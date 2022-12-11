@@ -111,8 +111,6 @@ function addPoints(unitCost, unitCategory) {
 function initialize() {
     $(database).find("unit").each(function() {
         var name = $(this).attr('nombre');
-        //var category = $(this).attr('category1');
-        //var baseCost = $(this).attr('baseCost');
         $("#units").append($('<option>', {
             value: name,
             text: name
