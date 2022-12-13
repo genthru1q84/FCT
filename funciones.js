@@ -1,6 +1,7 @@
 let database;
 let unitList = [];
 let unitBeingEdited;
+var initialListName = "NombreDeLaLista";
 
 /*propiedades del objeto unidad
 nombre
@@ -89,6 +90,12 @@ $(document).ready(function() {
     $('#addUnitButton').on('click', function() {
         addUnit($('#units').val());
     });
+    $('#toServerButton').on('click', function() {
+        saveArmy();
+    });
+    $('#loadButton').on('click', function() {
+        loadArmy();
+    });
     $('.sectionTitle').on('click', function() {
         $(this).next().toggle();
         if ($(this).children(".sectionName").text()[0] == "▶") {
@@ -97,6 +104,7 @@ $(document).ready(function() {
             $(this).children(".sectionName").text($(this).children(".sectionName").text().replace("▼", "▶"));
         }
     });
+    getArmies();
 });
 
 function addPoints(unitCost, unitCategory) {
@@ -130,7 +138,7 @@ function initialize() {
 
 function printUnit(unitId) {
     let unit = unitList[unitId];
-    let bloqueDeUnidad = '<div class="unitContainer" id="unit' + (unitList.length - 1) + '"><div class="unitIcon"><img src="' + unit.category + '.png"></div><div class="unitTextBox" onclick="editUnit(' + (unitList.length - 1) + ')"><div class="unitData"><div class="unitName">' + unit.name + '</div><div class="unitPoints">' + totalUnitCost(unit) + '</div></div><div class="unitDescription">' + unitDescription(unit) + '</div></div><div class="unitButtons"><div class="copyButton" onclick="copyUnit(' + (unitList.length - 1) + ')">C</div><div class="deleteButton" onclick="deleteUnit(' + (unitList.length - 1) + ')">D</div></div></div>'
+    let bloqueDeUnidad = '<div class="unitContainer" id="unit' + unitId + '"><div class="unitIcon"><img src="' + unit.category + '.png"></div><div class="unitTextBox" onclick="editUnit(' + unitId + ')"><div class="unitData"><div class="unitName">' + unit.name + '</div><div class="unitPoints">' + totalUnitCost(unit) + '</div></div><div class="unitDescription">' + unitDescription(unit) + '</div></div><div class="unitButtons"><div class="copyButton" onclick="copyUnit(' + unitId + ')">C</div><div class="deleteButton" onclick="deleteUnit(' + unitId + ')">D</div></div></div>'
     $(".sectionContainer." + unit.category).append(bloqueDeUnidad);
     addPoints(totalUnitCost(unit), unit.category);
 }
@@ -352,4 +360,83 @@ function formatArmy() {
 
 function closeFormat() {
     $("#formatPopUp").hide();
+}
+
+function loadArmy() {
+    var request = $.ajax({
+        url: "getArmy.php",
+        type: "POST",
+        data: { listName: $("#lists").val() },
+        dataType: "json"
+    });
+
+
+    request.done(function(msg) {
+        $(".sectionContainer").empty();
+        $(".sectionPoints").text(0);
+        unitList = "";
+        unitList = msg[1];
+        for (i = 0; i < unitList.length; i++) {
+            if (unitList[i] != null) {
+                printUnit(i);
+            }
+        }
+        $("#listName").val(msg[0])
+        initialListName = msg[0];
+    });
+
+    request.fail(function(jqXHR, textStatus) {
+        alert("Request failed: " + textStatus);
+    });
+}
+
+function saveArmy() {
+    var request = $.ajax({
+        url: "saveArmy.php",
+        type: "POST",
+        data: { listName: $("#listName").val().replace("'", ""), armyJson: JSON.stringify(unitList), originalName: initialListName },
+        dataType: "text"
+    });
+
+
+    request.done(function(msg) {
+        switch (msg) {
+            case "done":
+                alert("Your army is saved in the server.");
+                break;
+            case "exists":
+                alert("There is an army with the same name in the server. Load it before making changes or change your current army name.");
+                break;
+            case "name":
+                alert("You need to give your army a name in top.");
+                break;
+            default:
+                alert("Request failed: unknown.");
+                break;
+        }
+    });
+
+    request.fail(function(jqXHR, textStatus) {
+        alert("Request failed: " + textStatus);
+    });
+}
+
+function getArmies() {
+    var request = $.ajax({
+        url: "getArmy.php",
+        type: "POST",
+        data: {},
+        dataType: "json"
+    });
+
+
+    request.done(function(msg) {
+        msg.forEach(function(val) {
+            $("#lists").append("<option value='" + val + "' >" + val + "</option>");
+        });
+    });
+
+    request.fail(function(jqXHR, textStatus) {
+        alert("Error requesting armies from server: " + textStatus);
+    });
 }

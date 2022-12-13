@@ -1,0 +1,1 @@
+[{"options":[],"id":0,"optionsPrice":[],"name":"Barbarian Chief","baseCost":110,"category":"Characters","size":"1","minSize":"1","totalCost":110,"maxMagic":"100","modelCost":"0"},{"options":[],"id":1,"optionsPrice":[],"name":"Warrior Chariot","baseCost":230,"category":"Special","size":"1","minSize":"1","maxSize":"1","totalCost":230}]

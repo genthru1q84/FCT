@@ -22,14 +22,22 @@
         </select>
     </form>
     <div class='section'>
-        <div class='sectionName'>▼ 'Nombre de la lista'</div>(v1) &#9999
+        <div class='sectionName'><input id="listName" type="text" value="'Nombre de la lista'"></div>
         <div class='points'>/4500 pts</div>
     </div>
     <form>
-        <select name='units' id='units'>
-            <option value='none' selected disabled>Select a unit</option>
-        </select>
-        <div class="button" id="addUnitButton">Agregar >></div>
+        <div>
+            <select name='units' id='units'>
+                <option value='none' selected disabled>Select a unit</option>
+            </select>
+            <div class="button" id="addUnitButton">Add >></div>
+        </div>
+        <div>
+            <select name='lists' id='lists'>
+                <option value='none' selected disabled>Select a list from server</option>
+            </select>
+            <div class="button" id="loadButton">Load >></div>
+        </div>
     </form>
     <div class='section'>
         <div class='sectionTitle'>
@@ -69,6 +77,7 @@
     <div id="buttoneer">
         <div class="button" id="exportButton">Export Army to file</div>
         <div class="button" id="importButton">Import file to Army</div>
+        <div class="button" id="toServerButton">Save to server</div>
         <div class="button" id="formatButton">Format Army</div>
     </div>
     <div id="formatPopUp" style="display:none">

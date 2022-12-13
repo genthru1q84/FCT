@@ -178,12 +178,13 @@ label {
 #saveButton {
     display: flex;
     align-items: center;
-    width: 60px;
+    width: fit-content;
+    font-weight: bold;
     height: 10px;
-    background-color: white;
+    background-color: #0a1130;
     color: white;
     margin: 10px auto;
-    padding: 15px;
+    padding: 15px 30px;
     border: 2px solid white;
     cursor: pointer;
 }
@@ -253,7 +254,7 @@ body {
     font-weight: bold;
 }
 
-select#units {
+select {
     margin: 0px 10px;
     border: 2px solid white;
     width: 200px;
@@ -263,6 +264,11 @@ select#units {
     background-color: #0a1130;
     color: white;
     border-radius: 8px;
+}
+
+select#lists {
+    width: fit-content;
+    min-width: 350px;
 }
 
 .sectionName,
@@ -283,6 +289,16 @@ form {
     display: flex;
     font-size: 18px;
     align-items: center;
+    justify-content: space-between;
+}
+
+form>div {
+    display: flex;
+    align-items: center;
+}
+
+form>div:last-child {
+    margin-right: 10px;
 }
 
 body div {
@@ -297,4 +313,18 @@ body div {
 
 body>.section:nth-child(4) {
     display: flex;
+    align-items: center;
+}
+
+body>.section:nth-child(4)> :first-child {
+    margin-right: 20px;
+}
+
+#listName {
+    background-color: #0a1130;
+    border: 2px solid white;
+    border-radius: 8px;
+    color: white;
+    padding: 3px 8px;
+    text-align: center;
 }
