@@ -35,6 +35,8 @@ img {
     justify-content: space-between;
     margin-bottom: 5px;
     border-bottom: 1px solid gray;
+    border-radius: 0;
+    cursor: pointer;
     padding: 3px 10px;
 }
 
@@ -69,6 +71,7 @@ img {
     display: flex;
     border-bottom: 1px solid white;
     padding: 12px;
+    border-radius: 0;
 }
 
 .unitData {
@@ -94,7 +97,7 @@ img {
 }
 
 .unitIcon>img {
-    width: 60px;
+    width: 45px;
     height: auto;
 }
 
@@ -257,6 +260,9 @@ select#units {
     height: 30px;
     text-align: center;
     font-size: 18px;
+    background-color: #0a1130;
+    color: white;
+    border-radius: 8px;
 }
 
 .sectionName,
@@ -277,4 +283,18 @@ form {
     display: flex;
     font-size: 18px;
     align-items: center;
+}
+
+body div {
+    border-radius: 8px;
+}
+
+.button:hover {
+    color: #0a1130;
+    background-color: white;
+    font-weight: bold;
+}
+
+body>.section:nth-child(4) {
+    display: flex;
 }

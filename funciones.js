@@ -89,6 +89,14 @@ $(document).ready(function() {
     $('#addUnitButton').on('click', function() {
         addUnit($('#units').val());
     });
+    $('.sectionTitle').on('click', function() {
+        $(this).next().toggle();
+        if ($(this).children(".sectionName").text()[0] == "▶") {
+            $(this).children(".sectionName").text($(this).children(".sectionName").text().replace("▶", "▼"));
+        } else {
+            $(this).children(".sectionName").text($(this).children(".sectionName").text().replace("▼", "▶"));
+        }
+    });
 });
 
 function addPoints(unitCost, unitCategory) {
@@ -122,7 +130,7 @@ function initialize() {
 
 function printUnit(unitId) {
     let unit = unitList[unitId];
-    let bloqueDeUnidad = '<div class="unitContainer" id="unit' + (unitList.length - 1) + '"><div class="unitIcon"><img src="Logo.jpg"></div><div class="unitTextBox" onclick="editUnit(' + (unitList.length - 1) + ')"><div class="unitData"><div class="unitName">' + unit.name + '</div><div class="unitPoints">' + totalUnitCost(unit) + '</div></div><div class="unitDescription">' + unitDescription(unit) + '</div></div><div class="unitButtons"><div class="copyButton" onclick="copyUnit(' + (unitList.length - 1) + ')">C</div><div class="deleteButton" onclick="deleteUnit(' + (unitList.length - 1) + ')">D</div></div></div>'
+    let bloqueDeUnidad = '<div class="unitContainer" id="unit' + (unitList.length - 1) + '"><div class="unitIcon"><img src="' + unit.category + '.png"></div><div class="unitTextBox" onclick="editUnit(' + (unitList.length - 1) + ')"><div class="unitData"><div class="unitName">' + unit.name + '</div><div class="unitPoints">' + totalUnitCost(unit) + '</div></div><div class="unitDescription">' + unitDescription(unit) + '</div></div><div class="unitButtons"><div class="copyButton" onclick="copyUnit(' + (unitList.length - 1) + ')">C</div><div class="deleteButton" onclick="deleteUnit(' + (unitList.length - 1) + ')">D</div></div></div>'
     $(".sectionContainer." + unit.category).append(bloqueDeUnidad);
     addPoints(totalUnitCost(unit), unit.category);
 }
