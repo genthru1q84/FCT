@@ -339,9 +339,13 @@ body>.section:nth-child(4)> :first-child {
 
 .unitPanel {
     width: 700px;
-    border-bottom: 2px solid grey;
     border-radius: 0px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+}
+
+.unitPanel p {
+    border-bottom: 2px solid grey;
+    margin-bottom: 40px;
 }
 
 .unitPanel:nth-child(2) {
@@ -349,6 +353,7 @@ body>.section:nth-child(4)> :first-child {
 }
 
 h3 {
+    cursor: pointer;
     border-bottom: solid 1px white;
     width: 400px;
 }

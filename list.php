@@ -22,6 +22,9 @@
 $filesArray = scandir("./formattedFiles");
 $filesArray = array_values(array_diff($filesArray, array('..', '.')));
 
+$hidden = "";
+$arrow = "▼ ";
+
 for($i = 0; $i < count($filesArray); $i++){
 
 $name = str_replace(".txt", "", $filesArray[$i]);
@@ -29,14 +32,19 @@ $list = file_get_contents("./formattedFiles/{$name}.txt", true);;
 
 ?>
     <div class="unitPanel">
-        <h3> <?php echo $name; ?> </h3>
-        <p> <?php echo $list; ?> </p>
+        <h3><?php echo $arrow.$name; ?> </h3>
+        <p <?php echo $hidden; ?> > <?php echo $list; ?> </p>
     </div>
 
 <?php
+
+$hidden = "style='display:none;'";
+$arrow = "▶ ";
 
 }
 
 ?>
 
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
+<script src='list.js'></script>
 </body>
