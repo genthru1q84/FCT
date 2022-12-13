@@ -79,7 +79,7 @@ $(document).ready(function() {
         exporter();
     });
     $('#formatButton').on('click', function() {
-        formatArmy();
+        formatArmy(true);
     });
     $('#formatBack').on('click', function() {
         closeFormat();
@@ -340,7 +340,7 @@ function importer(file) {
     }
 }
 
-function formatArmy() {
+function formatArmy(show) {
     formatOutput = "";
     for (var i = 0; i < unitList.length; i++) {
         if (unitList[i] == null) { continue; }
@@ -354,8 +354,13 @@ function formatArmy() {
         }
         formatOutput += "<br>";
     }
-    $("#formatText").html(formatOutput + "<div id='formatBack' onclick='closeFormat()' ><img src='back.jpg'></div>");
-    $("#formatPopUp").show();
+    if (show) {
+        $("#formatText").html(formatOutput + "<div id='formatBack' onclick='closeFormat()' ><img src='back.jpg'></div>");
+        $("#formatPopUp").show();
+    } else {
+        return formatOutput;
+    }
+
 }
 
 function closeFormat() {
@@ -394,12 +399,13 @@ function saveArmy() {
     var request = $.ajax({
         url: "saveArmy.php",
         type: "POST",
-        data: { listName: $("#listName").val().replace("'", ""), armyJson: JSON.stringify(unitList), originalName: initialListName },
+        data: { listName: $("#listName").val().replace("'", ""), armyJson: JSON.stringify(unitList), originalName: initialListName, formatted: formatArmy(false) },
         dataType: "text"
     });
 
 
     request.done(function(msg) {
+        getArmies();
         switch (msg) {
             case "done":
                 alert("Your army is saved in the server.");

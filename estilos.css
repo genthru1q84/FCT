@@ -4,9 +4,17 @@
 }
 
 #logo {
+    margin-top: 50px;
     height: 50px;
     display: flex;
     align-items: center;
+}
+
+#nav {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #ff1f20;
+    margin-top: 6px;
 }
 
 #logo img {
@@ -327,4 +335,20 @@ body>.section:nth-child(4)> :first-child {
     color: white;
     padding: 3px 8px;
     text-align: center;
+}
+
+.unitPanel {
+    width: 700px;
+    border-bottom: 2px solid grey;
+    border-radius: 0px;
+    margin-bottom: 50px;
+}
+
+.unitPanel:nth-child(2) {
+    margin-top: 70px;
+}
+
+h3 {
+    border-bottom: solid 1px white;
+    width: 400px;
 }

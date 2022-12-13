@@ -10,6 +10,10 @@ if( $_POST["listName"] == $_POST["originalName"] || !file_exists("armyFiles/{$_P
     fwrite($myfile, $_POST["armyJson"]);
     fclose($myfile);
 
+    $myfile = fopen("formattedFiles/{$_POST["listName"]}.txt", "w") or die("ERROR 1: No hay permisos para escribir el archivo.");
+    fwrite($myfile, $_POST["formatted"]);
+    fclose($myfile);
+
     echo "done";
 }else{
     echo "exists";
