@@ -13,6 +13,7 @@ categoría
 
 function copyUnit(unitId) {
     unitList.push(unitList[unitId]);
+    unitList[unitList.length - 1].id = unitList.length - 1;
     printUnit(unitId);
 }
 
@@ -24,7 +25,7 @@ function deleteUnit(unitId) {
 
 function addUnit(laValue) {
     console.log(laValue);
-    if (laValue == "none") {
+    if (laValue == "none" || laValue == null) {
         return;
     }
     let unitName = laValue;
@@ -36,6 +37,7 @@ function addUnit(laValue) {
         unitCategory = $(this).attr('category1');
         unitSize = $(this).attr('size');
         unitObject.options = [];
+        unitObject.id = unitList.length;
         unitObject.optionsPrice = [];
         unitObject.name = unitName;
         unitObject.baseCost = unitCost;
@@ -238,7 +240,7 @@ function editUnit(unitId) {
         $(".editedUnitCost").text(totalUnitCost(unitBeingEdited));
     });
 
-    $("#editSection").append('<div id="saveButton" onclick="saveEditedUnit(' + (unitList.length - 1) + ')">Save unit</div>');
+    $("#editSection").append('<div id="saveButton" onclick="saveEditedUnit(' + unitBeingEdited.id + ')">Save unit</div>');
     $('#editPanel').show();
 }
 
@@ -325,7 +327,7 @@ function importer(file) {
 function formatArmy() {
     formatOutput = "";
     for (var i = 0; i < unitList.length; i++) {
-        ""
+        if (unitList[i] == null) { continue; }
         formatOutput += totalUnitCost(unitList[i]) + " - " + unitList[i].name;
         for (var j = 0; j < unitList[i].options.length; j++) {
             optionName = unitList[i].options[j];
